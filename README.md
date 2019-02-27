@@ -3,13 +3,9 @@ FireLink Desktop Software for Mac, Windows and Linux!
 
 **Preview Demo**
 
-Step 1. Run the setup
-:-------------------------:
-![](assets/firelinkimage.png)
-
-Step 2. Copy and paste the link and you'll end up on this page if all goes well.
-:-------------------------:
-![](assets/setupbr.png)
+Step 1. Run the setup       |  Step 2. Copy and paste the link and you'll end up on this page if all goes well.
+:-------------------------:|:-------------------------:
+![](assets/firelinkimage.png) | ![](assets/setupbr.png)
 
 Step 3. Open the FireLink app on your mobile device and select the three dots in
 the top right corner and select **Register New Device** and then scan the QR Code 
