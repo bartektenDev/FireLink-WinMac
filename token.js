@@ -38,6 +38,8 @@ messaging.onTokenRefresh(function() {
 
 messaging.onMessage(function(payload) {
     console.log("Message received. ", payload);
+    var x = document.getElementById("notis");
+    x.style.display = "none";
     NotisElem.innerHTML = NotisElem.innerHTML + JSON.stringify(payload)
 });
 
@@ -74,7 +76,7 @@ function showToken(currentToken) {
   if(currentToken.length == 152){
     document.getElementById("tokenImage1").src = 'https://api.qrserver.com/v1/create-qr-code/?data=' + currentToken + '&amp;size=150x150';
   }else{
-document.getElementById("tokenImage1").src = 'https://api.qrserver.com/v1/create-qr-code/?data=NOTOKEN&amp;size=150x150';
+    document.getElementById("tokenImage1").src = 'https://api.qrserver.com/v1/create-qr-code/?data=NOTOKEN&amp;size=150x150';
   }
 }
 
@@ -155,6 +157,8 @@ function appendMessage(payload) {
   dataElement.textContent = JSON.stringify(payload, null, 2);
   messagesElement.appendChild(dataHeaderELement);
   messagesElement.appendChild(dataElement);
+  var x = document.getElementById("notis");
+  x.style.display = "none";
 }
 // Clear the messages element of all children.
 function clearMessages() {

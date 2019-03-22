@@ -27,11 +27,15 @@ function receivedDeviceKey()  {
       if (testRE1 && testRE1.length > 1)
       {
         var brokenKey = testRE1[1];
-        var goldenKey = brokenKey.replace('":"','');
-        //did we notify them?
-        if(firstMsgOfSession == false){
-          var person = prompt("You received a key from a mobile device! If you choose to accept, copy the key and paste it in settings within the FireLink web extension. Then close this tab. Key: ", goldenKey);
-          firstMsgOfSession = true;
+        var silverKey = brokenKey.replace('":"','');
+        var goldenKey = silverKey.replace('"','');
+        //now lets check if the sent data is a token or not
+        if(goldenKey.length == 152){
+          //did we notify them?
+          if(firstMsgOfSession == false){
+            prompt("You received a key from a mobile device! If you choose to accept, copy the key and paste it in settings within the FireLink web extension. Then close this tab. /n Key: ", goldenKey);
+            firstMsgOfSession = true;
+          }
         }
       }
     }
