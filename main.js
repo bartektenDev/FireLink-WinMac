@@ -14,7 +14,7 @@ let mainWindow
 function createWindow () {
   // Create the browser window.mainWindow = new BrowserWindow({width: 800, height: 600,icon: __dirname + '/Bluetooth.ico'});
 
-  mainWindow = new BrowserWindow({width: 420, height: 650, icon:__dirname + '/web_hi_res_512.png'})
+  mainWindow = new BrowserWindow({width: 420, height: 530, icon:__dirname + '/web_hi_res_512.png'})
 
   var session = mainWindow.webContents.session;
    session.clearStorageData(function() {

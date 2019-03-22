@@ -2,7 +2,7 @@
 
 function pageload() {
   console.log("PageLoad Function Running...");
-  receivedDeviceKey();
+  //receivedDeviceKey();
 }
 
 function receivedDeviceKey()  {

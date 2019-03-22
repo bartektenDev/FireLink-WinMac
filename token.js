@@ -72,9 +72,9 @@ function showToken(currentToken) {
   tokenElement.textContent = currentToken;
   //if the currentToken text is the exact length as a typical token then change the QR Code Image to this token
   if(currentToken.length == 152){
-    //document.getElementById("tokenImage1").src = 'https://api.qrserver.com/v1/create-qr-code/?data=' + currentToken + '&amp;size=150x150';
+    document.getElementById("tokenImage1").src = 'https://api.qrserver.com/v1/create-qr-code/?data=' + currentToken + '&amp;size=150x150';
   }else{
-    //document.getElementById("tokenImage1").src = 'https://api.qrserver.com/v1/create-qr-code/?data=NOTOKEN&amp;size=150x150';
+document.getElementById("tokenImage1").src = 'https://api.qrserver.com/v1/create-qr-code/?data=NOTOKEN&amp;size=150x150';
   }
 }
 

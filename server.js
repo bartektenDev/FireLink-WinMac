@@ -8,9 +8,9 @@ var running = "unknown";
 
 //very important (like all other code)
 //this checks if the server is already running to not break lol
-urlExists('http://localhost:5000/', function(err, exists) {
+urlExists('http://127.0.0.1:5000/', function(err, exists) {
   if(exists == false){
-    console.log('Starting FireLink Server on  http://localhost:5000/...');
+    console.log('Starting FireLink Server on  http://127.0.0.1:5000/...');
     require('http').createServer(function (request, response) {
         request.addListener('end', function () {
             file.serve(request, response)
