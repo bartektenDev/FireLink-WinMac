@@ -35,6 +35,7 @@ function receivedDeviceKey()  {
           if(firstMsgOfSession == false){
             prompt("You received a key from a mobile device! If you choose to accept, copy the key and paste it in settings within the FireLink web extension. Then close this tab. /n Key: ", goldenKey);
             firstMsgOfSession = true;
+            location.reload();
           }
         }
       }
