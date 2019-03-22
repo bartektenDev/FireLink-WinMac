@@ -14,7 +14,7 @@ let mainWindow
 function createWindow () {
   // Create the browser window.mainWindow = new BrowserWindow({width: 800, height: 600,icon: __dirname + '/Bluetooth.ico'});
 
-  mainWindow = new BrowserWindow({width: 300, height: 530, icon:__dirname + '/web_hi_res_512.png'})
+  mainWindow = new BrowserWindow({width: 420, height: 650, icon:__dirname + '/web_hi_res_512.png'})
 
   var session = mainWindow.webContents.session;
    session.clearStorageData(function() {
@@ -23,7 +23,7 @@ function createWindow () {
    });
 
   // and load the index.html of the app.
-  mainWindow.loadURL('http://localhost:5000/electron/index.html');
+  mainWindow.loadURL('http://localhost:5000/public/electron/index.html');
 
   //refresh to be safe
   mainWindow.reload();
@@ -33,7 +33,7 @@ function createWindow () {
 
   mainWindow.webContents.on('did-fail-load', (event, url) => {
     console.log('Attempting to load setup again...');
-    mainWindow.loadURL('http://localhost:5000/electron/index.html');
+    mainWindow.loadURL('http://localhost:5000/public/electron/index.html');
   })
 
   // Emitted when the window is closed.
