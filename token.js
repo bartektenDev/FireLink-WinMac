@@ -14,6 +14,8 @@ var config = {
 };
 firebase.initializeApp(config);
 
+const element = document.querySelector('#tokenImage1');
+
 const tokenDivId = 'token_div';
 const permissionDivId = 'permission_div';
 
@@ -33,8 +35,8 @@ messaging.onTokenRefresh(function() {
     }).catch(function(err) {
       console.log('Unable to retrieve refreshed token ', err);
       showToken('Unable to retrieve refreshed token ', err);
-    });
   });
+});
 
 messaging.onMessage(function(payload) {
     console.log("Message received. ", payload);
@@ -88,8 +90,8 @@ function sendTokenToServer(currentToken) {
     } else {
       console.log('Token already sent to server so won\'t send it again ' +
           'unless it changes');
-    }
   }
+}
 
 function isTokenSentToServer() {
   return window.localStorage.getItem('sentToServer') === '1';
@@ -132,6 +134,8 @@ function deleteToken() {
         var token = document.getElementById("token").innerHTML;
         document.getElementById("tokenImage1").src = 'https://api.qrserver.com/v1/create-qr-code/?data=NOTOKEN&amp;size=150x150';
         console.log('Token deleted.');
+        element.classList.add('animated', 'bounceOutLeft');
+        element.addEventListener('animationend', function() { stopAnims() })
         setTokenSentToServer(false);
         // [START_EXCLUDE]
         // Once token is deleted update UI.
@@ -145,7 +149,12 @@ function deleteToken() {
       console.log('Error retrieving Instance ID token. ', err);
       showToken('Error retrieving Instance ID token. ', err);
     });
-  }
+}
+
+function stopAnims() {
+  //remove the animation attached to the following item
+  document.getElementById("tokenImage1").className = "animated bounceInRight";
+}
 
 // Add a message to the messages element.
 function appendMessage(payload) {
