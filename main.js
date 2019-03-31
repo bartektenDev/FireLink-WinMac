@@ -27,17 +27,19 @@ function createWindow () {
 
   mainWindow = new BrowserWindow({width: 420, height: 530, icon:__dirname + '/web_hi_res_512.png'})
 
-  var session = mainWindow.webContents.session;
-   session.clearStorageData(function() {
-       session.clearCache(function() {
-       });
-   });
+  mainWindow.webContents.openDevTools()
+
+  // var session = mainWindow.webContents.session;
+  //  session.clearStorageData(function() {
+  //      session.clearCache(function() {
+  //      });
+  //  });
 
   // and load the index.html of the app.
   mainWindow.loadURL('http://localhost:5000/public/electron/index.html');
 
   //refresh to be safe
-  mainWindow.reload();
+  //mainWindow.reload();
 
   // Open the DevTools.
   //mainWindow.webContents.openDevTools()
