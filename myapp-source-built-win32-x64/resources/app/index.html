@@ -1,0 +1,71 @@
+<html>
+<title>FireLink - PC Key</title>
+<head>
+</head>
+<link rel="stylesheet" type="text/css" href="animate.css">
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Pragati+Narrow');
+
+    div {
+        margin-bottom: 15px;
+    }
+    #background {
+      background-image: linear-gradient(to right, #f7b733, #fc4a1a);
+    }
+    #token  {
+      text-align: center;
+      max-width: 400px;
+    }
+    #contents {
+      color: #000;
+      text-align:center;
+      font-family: 'Pragati Narrow', sans-serif;
+    }
+</style>
+<body id="background" onload="pageload()">
+  <div id="contents">
+      <h1>FireLink - Link this PC to your Mobile Device</h1>
+      <div id="token_div" style="display: none;">
+        <div>
+          Step 2. Open the FireLink app on your Mobile device
+          <br>
+          and tap the three dots on the top right corner and
+          <br>
+          select 'Register New Device'. Then scan this key!
+        </div>
+        <div>
+          <img src="assets/key.gif" width="30px" height="70px" style="vertical-align: middle;" >
+          <span style="vertical-align: middle;">This PC Key: </span>
+        </div>
+        <textarea id="token" rows="5" cols="45" /></textarea>
+        <br>
+        <div>
+          <img id="tokenImage1" src="none" />
+        </div>
+        <button id="newToken" onclick="deleteToken()">Generate New Key</button>
+      </div>
+      <div id="msg"></div>
+      <div id="notis"></div>
+      <div id="err"></div>
+      <!-- div to display the UI to allow the request for permission to
+           notify the user. This is shown if the app has not yet been
+           granted permission to notify. -->
+      <div id="permission_div" style="display: none;">
+        <h4>Step 1. I Need Permission! Click this button and ALLOW notifications!</h4>
+        <p id="token"></p>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                onclick="requestPermission()">Request Permission</button>
+      </div>
+
+      <div id="messages"></div>
+
+      <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-messaging.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-functions.js"></script>
+      <script src="token.js"></script>
+      <script src="loaded.js"></script>
+    </div>
+  </body>
+</html>
