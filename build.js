@@ -4,13 +4,13 @@ var electronInstaller = require('electron-winstaller');
 // In this case, we can use relative paths
 var settings = {
     // Specify the folder where the built app is located
-    appDirectory: './myapp-source-built-win32-x64',
+    appDirectory: './firelinkwin-built-win32-x64',
     // Specify the existing folder where
-    outputDirectory: './myapp-source-built-installers',
+    outputDirectory: './firelinkwin-built-installers',
     // The name of the Author of the app (the name of your company)
-    authors: 'Our Code World Inc.',
+    authors: 'Bart Tarasewicz',
     // The name of the executable of your built
-    exe: './myapp-source-built.exe'
+    exe: './firelinkwin-built.exe'
 };
 
 resultPromise = electronInstaller.createWindowsInstaller(settings);
