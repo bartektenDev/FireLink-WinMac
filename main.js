@@ -3,6 +3,8 @@ const {app, BrowserWindow} = require('electron');
 const electron = require('electron');
 const path = require('path');
 const url = require('url');
+const exec = require('child_process').exec;
+const remote = require('electron').remote
 
 //electron squirrel for release
 // Module to control application life. (this variable should already exist)
@@ -15,8 +17,8 @@ if (handleSquirrelEvent(app2)) {
 }
 
 //local Server
-const { fork } = require('child_process')
-const ps = fork(`${__dirname}/server.js`)
+//const { fork } = require('child_process')
+//const ps = fork(`${__dirname}/server.js`)
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -62,6 +64,17 @@ app.on('ready', function(){
     mainWindow.webContents.openDevTools();
   }
 
+  function execute(command, callback) {
+      exec(command, (error, stdout, stderr) => {
+          callback(stdout);
+      });
+  };
+
+  // call the function
+  execute('http-server -p 5000', (output) => {
+      console.log(output);
+  });
+
   //this handles the redirect information from the server we request data from
   //mainWindow.webContents.on('will-navigate', function (event, newUrl) {
       //console.log(newUrl);
@@ -69,6 +82,7 @@ app.on('ready', function(){
 
   // Quit app when closed
   mainWindow.on('closed', function(){
+    // call the function
     app.quit();
   });
 });
