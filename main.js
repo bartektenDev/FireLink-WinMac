@@ -4,11 +4,12 @@ const electron = require('electron');
 const path = require('path');
 const url = require('url');
 const exec = require('child_process').exec;
-const remote = require('electron').remote
+const remote = require('electron').remote;
+const { shell } = require('electron');
 
 //electron squirrel for release
 // Module to control application life. (this variable should already exist)
-const app2 = electron.app
+const app2 = electron.app;
 
 // this should be placed at top of main.js to handle setup events quickly
 if (handleSquirrelEvent(app2)) {
@@ -22,7 +23,13 @@ if (handleSquirrelEvent(app2)) {
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+let mainWindow;
+
+function execute(command, callback) {
+    exec(command, (error, stdout, stderr) => {
+        callback(stdout);
+    });
+};
 
 // Listen for app to be ready
 app.on('ready', function(){
@@ -51,11 +58,11 @@ app.on('ready', function(){
   //   protocol: 'http:',
   //   slashes:true
   // }));
-  mainWindow.loadURL('http://localhost:5000/public/electron/index.html');
+  mainWindow.loadURL('http://localhost:5000/electron/index.html');
 
   mainWindow.webContents.on('did-fail-load', (event, url) => {
     console.log('Attempting to load setup again...');
-    mainWindow.loadURL('http://localhost:5000/public/electron/index.html');
+    mainWindow.loadURL('http://localhost:5000/electron/index.html');
   })
 
   mainWindow.setMenu(null);
@@ -64,15 +71,11 @@ app.on('ready', function(){
     mainWindow.webContents.openDevTools();
   }
 
-  function execute(command, callback) {
-      exec(command, (error, stdout, stderr) => {
-          callback(stdout);
-      });
-  };
-
   // call the function
   execute('http-server -p 5000', (output) => {
       console.log(output);
+      console.log('Started Server http://127.0.0.1:5000/...');
+      shell.openExternal('http://127.0.0.1:5000/')
   });
 
   //this handles the redirect information from the server we request data from
@@ -82,9 +85,23 @@ app.on('ready', function(){
 
   // Quit app when closed
   mainWindow.on('closed', function(){
+    execute('http-server -p 5000', (output) => {
+        console.log(output);
+    });
+    console.log('Closed App');
     // call the function
     app.quit();
   });
+});
+
+app.on('before-quit', function(){
+
+    // call the function
+    execute('http-server -p 5000', (output) => {
+        console.log(output);
+        console.log('Killing Server...');
+    });
+    console.log('Please do not forget to kill the nodes! End Node.js in task manager');
 });
 
 function handleSquirrelEvent(application) {
